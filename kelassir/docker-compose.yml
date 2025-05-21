@@ -1,0 +1,14 @@
+# version: '3.8'
+
+
+services:
+  express2-app:
+    build:
+      context: ./express-app
+      dockerfile: ../Dockerfile
+    container_name: kelassir_express2_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./express-app:/app
+      - /app/node_modules
