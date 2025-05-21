@@ -12,3 +12,17 @@ else
   echo "Menjana projek Express..."
   sudo docker run --rm -v "$PWD/express-app":/app -w /app node:18 npm install express
 fi
+
+# Jalankan docker-compose
+sudo docker-compose up -d
+
+# Tunggu Express container siap
+echo "Menunggu Express container untuk sedia..."
+while ! sudo docker exec kelassir_express2_app bash -c "echo 'ready';" 2>/dev/null; do
+  sleep 1
+done
+echo " ..... finished."
+
+# Run logs
+echo "Finale..."
+sudo docker-compose logs -f
